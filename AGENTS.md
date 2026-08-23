@@ -98,24 +98,32 @@ Estructura de cada recurso:
 ```
 datitos/
 ├── content/
-│   ├── _index.md          # Home page
-│   ├── issues/
-│   │   └── 001.md         # Cada issue
+│   ├── _index.md              # Home page
+│   ├── resources/
+│   │   ├── arasaac.md         # Cada resource (1 archivo = 1 resource)
+│   │   ├── mood-meter.md
+│   │   └── ...
 │   └── enviar/
-│       └── _index.md      # Página del formulario
+│       └── _index.md          # Página del formulario
 ├── layouts/
 │   ├── _default/
-│   │   ├── baseof.html    # Shell HTML base
-│   │   ├── list.html      # Listado (home, archivo)
-│   │   └── single.html    # Página individual (issue)
+│   │   ├── baseof.html        # Shell HTML base
+│   │   ├── list.html          # Home (resources agrupados por tag)
+│   │   ├── single.html        # Detalle de resource
+│   │   ├── taxonomy.html      # Listado filtrado por tag
+│   │   └── terms.html         # Listado de todos los tags
 │   └── partials/
 │       ├── head.html
 │       ├── header.html
 │       └── footer.html
 ├── static/
-│   └── css/
-│       └── style.css
-├── hugo.toml              # Configuración de Hugo
+│   ├── css/
+│   │   └── style.css
+│   └── images/
+│       └── resources/         # Imágenes manuales de resources
+├── scripts/
+│   └── fetch-og-images.sh     # Auto-fetch og:image de URLs
+├── hugo.toml                  # Configuración de Hugo
 └── .github/
     └── workflows/
         └── deploy.yml
@@ -136,3 +144,72 @@ datitos/
 - Interés en aprendizaje de idiomas (pero no universal — impulsado por hiperfijación)
 - Lenguaje preferido: "neurodivergente" (no "neurodiverso/a")
 - "Neurospicy" se usa pero no es válido para branding
+
+## Flujo de Curación (MVP)
+
+### 1. Recepción
+- La comunidad envía recursos vía formulario Tally (`/enviar/`)
+- Los datos se guardan en Google Sheets (integración Tally)
+
+### 2. Revisión manual
+- Revisar cada submission en Google Sheets
+- Verificar:
+  - URL funciona y es accesible
+  - Descripción es clara y útil
+  - Tags son correctos
+  - No hay contenido ofensivo o spam
+
+### 3. Crear resource file
+Crear `content/resources/{slug}.md` con esta estructura:
+
+```yaml
+---
+title: "Nombre del Recurso"
+date: 2026-08-23
+description: "Descripción clara y concisa del recurso y por qué es útil"
+tags: ["tag1", "tag2"]
+params:
+  link: "https://url-del-recurso.com"
+  author: "Nombre (opcional)"
+---
+```
+
+**Slug**: nombre en minúsculas, sin espacios, guiones en vez de underscores
+Ejemplo: `mood-meter.md`, `arasaac.md`
+
+### 4. Imágenes (opcional)
+Las imágenes se almacenan en `static/images/resources/`:
+
+```
+static/images/resources/
+├── arasaac.jpg
+├── mood-meter.png
+└── ...
+```
+
+**Formato recomendado**: JPG o PNG, máximo 800px de ancho
+**Relación aspecto**: 16:9 (se recorta automáticamente)
+
+**Flujo de imagen**:
+1. Guardar imagen en `static/images/resources/{slug}.{jpg|png}`
+2. Agregar al frontmatter: `image: "/images/resources/{slug}.{jpg|png}"`
+3. Si no hay imagen: el template muestra emoji 📌 como fallback
+
+**Auto-fetch de og:image**:
+- El script `scripts/fetch-og-images.sh` intenta obtener og:image automáticamente
+- Se ejecuta antes de `hugo build` en GitHub Actions
+- Solo procesa resources que NO tengan `image:` en el frontmatter
+- Si la URL no tiene og:image, se queda sin imagen (fallback 📌)
+
+### 5. Deploy
+- Push a `main` → GitHub Actions ejecuta:
+  1. `scripts/fetch-og-images.sh` (auto-fetch images)
+  2. `hugo --minify`
+  3. Deploy a GitHub Pages
+- Deploy automático en ~1-2 minutos
+
+### 6. Verificar
+- Visitar `https://diegap.github.io/datitos/`
+- Verificar que el resource aparece en home
+- Verificar que la página individual carga correctamente
+- Verificar tags funcionan (`/tags/{tag}/`)
