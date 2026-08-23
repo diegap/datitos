@@ -1,0 +1,268 @@
+:root {
+  --bg: #F5F0EB;
+  --text: #2D2A26;
+  --accent: #6B8FA3;
+  --card-bg: #EDE8E2;
+  --border: #D4CEC7;
+  --font: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
+  --max-width: 640px;
+  --spacing: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a1a;
+    --text: #e0e0e0;
+    --accent: #7ba8c2;
+    --card-bg: #2a2a2a;
+    --border: #444;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+html {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin: 2rem 0 1rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+/* Header */
+.site-header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.site-title:hover {
+  text-decoration: none;
+}
+
+.site-nav a {
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* Hero */
+.hero {
+  padding: 3rem 0 2rem;
+  text-align: center;
+}
+
+.hero .tagline {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+/* Issue cards */
+.latest-issues {
+  padding: 2rem 0;
+}
+
+.issue-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.issue-card h3 {
+  margin-bottom: 0.25rem;
+}
+
+.issue-card time {
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.issue-card p {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Issue single */
+.issue-header {
+  padding: 2rem 0 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.issue-header time {
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+/* Tag sections */
+.tag-section {
+  margin-bottom: 2.5rem;
+}
+
+.tag-section h2 {
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+/* Resource cards */
+.resource-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.resource-card h3 {
+  margin-bottom: 0.25rem;
+}
+
+.resource-card p {
+  font-size: 0.95rem;
+}
+
+/* Enviar */
+.enviar {
+  padding: 2rem 0;
+}
+
+.enviar p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.tally-embed {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Archive */
+.archive {
+  padding: 2rem 0;
+}
+
+.archive-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.archive-item time {
+  font-size: 0.85rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.archive-item p {
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: auto;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  :root {
+    --spacing: 1rem;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  .site-header .container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .site-nav a {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+}
