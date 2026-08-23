@@ -1,13 +1,4 @@
 {{ define "main" }}
-<section class="hero">
-  <div class="container">
-    <p class="tagline">{{ .Site.Params.description }}</p>
-    <div class="cta">
-      <a href="{{ "enviar/" | relURL }}" class="btn">Enviar contenido</a>
-    </div>
-  </div>
-</section>
-
 <section class="resources-by-tag">
   <div class="container">
     {{ range $tagName, $tagResources := .Site.Taxonomies.tags }}
