@@ -72,6 +72,10 @@ h3 {
 
 /* Header */
 .site-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
   padding: 1.5rem 0;
   border-bottom: 1px solid var(--border);
 }
