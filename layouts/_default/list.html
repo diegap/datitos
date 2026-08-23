@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="container">
+    <h1>{{ .Site.Title }}</h1>
+    <p class="tagline">{{ .Site.Params.description }}</p>
+    <div class="cta">
+      <a href="/enviar/" class="btn">Enviar contenido</a>
+    </div>
+  </div>
+</section>
+
+<section class="latest-issues">
+  <div class="container">
+    <h2>Publicaciones recientes</h2>
+    {{ range first 5 (where .Site.RegularPages "Section" "issues") }}
+    <article class="issue-card">
+      <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+      <time>{{ .Date.Format "2 January 2006" }}</time>
+      <p>{{ .Description }}</p>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

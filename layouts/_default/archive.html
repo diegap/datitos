@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="archive">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ range .Site.RegularPages.ByDate.Reverse }}
+    <article class="archive-item">
+      <time>{{ .Date.Format "2 January 2006" }}</time>
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+      <p>{{ .Description }}</p>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

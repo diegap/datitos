@@ -1,0 +1,17 @@
+baseURL = "https://diegap.github.io/datitos/"
+title = "Datitos"
+defaultContentLanguage = "es"
+
+[languages.es]
+  label = "Español"
+  weight = 1
+
+[params]
+  description = "Diversidad de recursos para compartir"
+  tallyFormId = "LZ4eQz"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[outputs]
+  home = ["HTML"]
