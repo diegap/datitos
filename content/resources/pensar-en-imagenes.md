@@ -6,5 +6,5 @@ tags: ["libros"]
 image: "https://m.media-amazon.com/images/I/81ux7hhVibL._SL1500_.jpg"
 params:
   link: "https://www.goodreads.com/book/show/2924879"
-  author: "Temple Grandin"
+  author: "Diego"
 ---
