@@ -1,9 +1,10 @@
 :root {
-  --bg: #F5F0EB;
-  --text: #2D2A26;
-  --accent: #6B8FA3;
-  --card-bg: #EDE8E2;
-  --border: #D4CEC7;
+  --bg: #FFF8F5;
+  --text: #3D3330;
+  --accent: #E8A87C;
+  --accent-hover: #D4915E;
+  --card-bg: #FFF0EA;
+  --border: #F0DDD4;
   --font: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
   --max-width: 640px;
   --spacing: 1.5rem;
@@ -11,11 +12,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1a1a;
-    --text: #e0e0e0;
-    --accent: #7ba8c2;
-    --card-bg: #2a2a2a;
-    --border: #444;
+    --bg: #1a1615;
+    --text: #f0e8e4;
+    --accent: #E8A87C;
+    --accent-hover: #F0BC96;
+    --card-bg: #2a2220;
+    --border: #3d3330;
   }
 }
 
@@ -121,7 +123,7 @@ h3 {
 .btn {
   display: inline-block;
   background: var(--accent);
-  color: white;
+  color: #3D3330;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-weight: 600;
@@ -129,7 +131,7 @@ h3 {
 }
 
 .btn:hover {
-  opacity: 0.9;
+  background: var(--accent-hover);
   text-decoration: none;
 }
 

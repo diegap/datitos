@@ -4,7 +4,7 @@
     <h1>{{ .Site.Title }}</h1>
     <p class="tagline">{{ .Site.Params.description }}</p>
     <div class="cta">
-      <a href="/enviar/" class="btn">Enviar contenido</a>
+      <a href="{{ "enviar/" | relURL }}" class="btn">Enviar contenido</a>
     </div>
   </div>
 </section>
