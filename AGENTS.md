@@ -18,8 +18,8 @@
 - **Template language**: Go templates (Hugo nativo)
 
 ## Design System (no negociable)
-- **Paleta**: rose-peach pastel `#FFF8F5`, texto `#3D3330`, acento `#E8A87C`, cards `#FFF0EA`, bordes `#F0DDD4`
-- **Dark mode**: vía `prefers-color-scheme`
+- **Paleta**: lavanda pastel `#F5F0FA`, texto `#2D2640`, acento `#B8A9C9`, cards `#EDE8F5`, bordes `#DDD4E8`
+- **Sin dark mode** — tema único, independiente de la config de sistema
 - **Font**: Atkinson Hyperlegible (Braille Institute), fallback `system-ui`
 - **Body**: 18px, line-height 1.7, max-width 640px
 - **Sin animaciones**, sin auto-play, respetar `prefers-reduced-motion`
