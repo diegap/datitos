@@ -6,6 +6,12 @@ defaultContentLanguage = "es"
   label = "Español"
   weight = 1
 
+[taxonomies]
+  tag = "tags"
+
+[pagination]
+  pagerSize = 12
+
 [params]
   description = "Diversidad de recursos para compartir"
   tallyFormId = "LZ4eQz"

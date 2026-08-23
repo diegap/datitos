@@ -9,15 +9,34 @@
   </div>
 </section>
 
-<section class="latest-issues">
+<section class="resources-by-tag">
   <div class="container">
-    <h2>Publicaciones recientes</h2>
-    {{ range first 5 (where .Site.RegularPages "Section" "issues") }}
-    <article class="issue-card">
-      <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-      <time>{{ .Date.Format "2 January 2006" }}</time>
-      <p>{{ .Description }}</p>
-    </article>
+    {{ range $tagName, $tagResources := .Site.Taxonomies.tags }}
+    <section class="tag-group">
+      <h2 class="tag-heading">
+        {{ $tagName | title }}
+        <a href="{{ "tags/" | relURL }}{{ $tagName | urlize }}/" class="tag-count">{{ len $tagResources }}</a>
+      </h2>
+      <div class="resources-grid">
+        {{ range first 6 $tagResources }}
+        <a href="{{ .RelPermalink }}" class="resource-card">
+          <div class="resource-card-image">
+            {{ with .Params.image }}
+              <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+            {{ else }}
+              <div class="resource-card-placeholder">📌</div>
+            {{ end }}
+          </div>
+          <div class="resource-card-body">
+            <h3>{{ .Title }}</h3>
+            <div class="resource-tags">
+              {{ range .Params.tags }}<span class="tag">{{ . }}</span>{{ end }}
+            </div>
+          </div>
+        </a>
+        {{ end }}
+      </div>
+    </section>
     {{ end }}
   </div>
 </section>

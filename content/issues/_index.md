@@ -1,4 +1,0 @@
----
-title: "Publicaciones"
-layout: "list"
----

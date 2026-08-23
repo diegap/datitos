@@ -1,9 +1,9 @@
 <header class="site-header">
   <div class="container">
-    <a href="{{ "" | relURL }}" class="site-title">{{ .Site.Title }}</a>
+    <a href="{{ .Site.BaseURL }}" class="site-title">{{ .Site.Title }}</a>
     <nav class="site-nav">
       <a href="{{ "enviar/" | relURL }}">Enviar contenido</a>
-      <a href="{{ "archivo/" | relURL }}">Archivo</a>
+      <a href="{{ "tags/" | relURL }}">Tags</a>
     </nav>
   </div>
 </header>

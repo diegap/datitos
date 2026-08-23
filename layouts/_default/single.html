@@ -1,29 +1,43 @@
 {{ define "main" }}
-<article class="issue">
+<article class="resource-detail">
   <div class="container">
-    <header class="issue-header">
-      <h1>{{ .Title }}</h1>
-      <time>{{ .Date.Format "2 January 2006" }}</time>
+    <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Volver</a>
+
+    <header class="resource-header">
+      <h1><a href="{{ .Params.link }}" target="_blank" rel="noopener">{{ .Title }}</a></h1>
     </header>
 
-    {{ $resources := .Params.resources }}
-    {{ $tags := slice "comunicación" "apps" "herramientas" "artículos" "servicios" "libros" "podcasts" "educación" "vida diaria" "emociones" "comunidad" }}
-    {{ $tagEmojis := dict "comunicación" "💬" "apps" "📱" "herramientas" "🛠️" "artículos" "📄" "servicios" "👥" "libros" "📚" "podcasts" "🎧" "educación" "🎓" "vida diaria" "🏠" "emociones" "💭" "comunidad" "🤝" }}
-
-    {{ range $tags }}
-      {{ $tagResources := where $resources "tags" "intersect" (slice .) }}
-      {{ if $tagResources }}
-      <section class="tag-section">
-        <h2>{{ index $tagEmojis . }} {{ title . }}</h2>
-        {{ range $tagResources }}
-        <div class="resource-card">
-          <h3><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></h3>
-          <p>{{ .description }}</p>
-        </div>
-        {{ end }}
-      </section>
-      {{ end }}
+    {{ with .Params.image }}
+    <div class="resource-image">
+      <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+    </div>
     {{ end }}
+
+    <div class="resource-body">
+      <p class="resource-description">{{ .Description }}</p>
+
+      {{ with .Content }}
+      <div class="resource-content">
+        {{ . }}
+      </div>
+      {{ end }}
+
+      {{ with .Params.tags }}
+      <div class="resource-tags">
+        {{ range . }}<a href="{{ "tags/" | relURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>{{ end }}
+      </div>
+      {{ end }}
+
+      {{ with .Params.author }}
+      {{ if . }}
+      <p class="resource-author">Enviado por <strong>{{ . }}</strong></p>
+      {{ end }}
+      {{ end }}
+
+      <div class="resource-actions">
+        <a href="{{ .Params.link }}" target="_blank" rel="noopener" class="btn">Visitar recurso</a>
+      </div>
+    </div>
   </div>
 </article>
 {{ end }}

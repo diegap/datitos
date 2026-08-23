@@ -1,0 +1,19 @@
+{{ define "main" }}
+<section class="terms-page">
+  <div class="container">
+    <header class="terms-header">
+      <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Volver</a>
+      <h1>Tags</h1>
+    </header>
+
+    <div class="tags-list">
+      {{ range $tagName, $tagResources := .Site.Taxonomies.tags }}
+      <a href="{{ "tags/" | relURL }}{{ $tagName | urlize }}/" class="tag-item">
+        <span class="tag-name">{{ $tagName | title }}</span>
+        <span class="tag-count">{{ len $tagResources }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

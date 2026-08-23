@@ -1,0 +1,31 @@
+{{ define "main" }}
+<section class="tag-page">
+  <div class="container">
+    <header class="tag-header">
+      <a href="{{ .Site.BaseURL }}" class="back-link">&larr; Volver</a>
+      <h1>{{ .Title | title }}</h1>
+      <p>{{ len .Pages }} recursos</p>
+    </header>
+
+    <div class="resources-grid">
+      {{ range .Pages.ByDate.Reverse }}
+      <a href="{{ .RelPermalink }}" class="resource-card">
+        <div class="resource-card-image">
+          {{ with .Params.image }}
+            <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+          {{ else }}
+            <div class="resource-card-placeholder">📌</div>
+          {{ end }}
+        </div>
+        <div class="resource-card-body">
+          <h3>{{ .Title }}</h3>
+          <div class="resource-tags">
+            {{ range .Params.tags }}<span class="tag">{{ . }}</span>{{ end }}
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
