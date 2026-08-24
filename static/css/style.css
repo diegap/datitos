@@ -387,6 +387,7 @@ h3 {
   border-top: 1px solid var(--border);
   text-align: center;
   font-size: 0.85rem;
+  color: var(--accent);
 }
 
 /* Responsive */
